@@ -1,0 +1,132 @@
+<%- include("head.ejs")%>
+<%- include('main.ejs')%>
+<div class="list-books">
+    <div class="container px-4 py-5">
+        <div class="row g-5">
+            <div class="col">
+              <%if (locals.book) {%>
+                <h4 class="mb-3">Atualizar livro</h4>
+                <form class="needs-validation" action="/update/<%= book.id%>" method="post">
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="titulo" class="form-label">Titulo</label>
+                      <input type="text" class="form-control" id="titulo" name="titulo" placeholder="" value="<%= book.title%>" required="">
+                    </div>
+        
+                    <div class="col-sm-6">
+                      <label for="rating" class="form-label">Avaliação</label>
+                      <select class="form-select" id="rating" name="rating" aria-label="Default select example">
+                          <option selected value="<%= book.rating%>"><%= book.rating%></option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                      </select>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="descricao" class="form-label">Breve resumo</label>
+                      <textarea class="form-control" id="descricao" name="descricao" rows="4"><%= book.description%></textarea>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="anotacoes" class="form-label">Anotações <span class="text-body-secondary">(Opcional)</span></label>
+                      <textarea class="form-control" id="anotacoes" name="anotacoes" rows="10"><%= book.notes%></textarea>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="key" class="form-label">Chave</label>
+                      <select class="form-select" id="key" name="key" aria-label="Default select example">
+                          <option selected value="<%= book.key%>"><%= book.key%></option>
+                          <option value="isbn">ISBN</option>
+                          <option value="oclc">OCLC</option>
+                          <option value="lccn">LCCN</option>
+                          <option value="olid">OLID</option>
+                          <option value="id">ID</option>
+                      </select>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="valorChave" class="form-label">Valor da chave</label>
+                      <input type="text" class="form-control" id="valorChave" name="valorChave" placeholder="" value="<%= book.key_value%>" required="">
+                    </div>
+        
+                  </div>
+        
+                  <hr class="my-4">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                      <button class="btn btn-secondary btn-lg" type="submit">Salvar</button>
+                  </div>
+                </form>
+              <%} else {%>
+                <h4 class="mb-3">Novo livro</h4>
+                <form class="needs-validation" action="/save" method="post">
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="titulo" class="form-label">Titulo</label>
+                      <input type="text" class="form-control" id="titulo" name="titulo" placeholder="" value="" required="">
+                    </div>
+        
+                    <div class="col-sm-6">
+                      <label for="rating" class="form-label">Avaliação</label>
+                      <select class="form-select" id="rating" name="rating" aria-label="Default select example">
+                          <option selected>Nota</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                      </select>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="descricao" class="form-label">Breve resumo</label>
+                      <textarea class="form-control" id="descricao" name="descricao" rows="4"></textarea>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="anotacoes" class="form-label">Anotações <span class="text-body-secondary">(Opcional)</span></label>
+                      <textarea class="form-control" id="anotacoes" name="anotacoes" rows="10"></textarea>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="key" class="form-label">Chave</label>
+                      <select class="form-select" id="key" name="key" aria-label="Default select example">
+                          <option selected>Selecione a chave</option>
+                          <option value="isbn">ISBN</option>
+                          <option value="oclc">OCLC</option>
+                          <option value="lccn">LCCN</option>
+                          <option value="olid">OLID</option>
+                          <option value="id">ID</option>
+                      </select>
+                    </div>
+        
+                    <div class="col-12">
+                      <label for="valorChave" class="form-label">Valor da chave</label>
+                      <input type="text" class="form-control" id="valorChave" name="valorChave" placeholder="" value="" required="">
+                    </div>
+        
+                  </div>
+        
+                  <hr class="my-4">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                      <button class="btn btn-secondary btn-lg" type="submit">Salvar</button>
+                  </div>
+                </form>
+              <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("footer.ejs")%>
